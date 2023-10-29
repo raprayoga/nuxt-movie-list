@@ -1,9 +1,9 @@
 /** @type { import('@storybook/vue3-vite').StorybookConfig } */
+import tsconfigPaths from "vite-tsconfig-paths";
+const { mergeConfig } = require("vite");
+
 const config = {
-  stories: [
-    "../stories/**/*.mdx",
-    "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-  ],
+  stories: ["../**/*.mdx", "../**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -15,6 +15,11 @@ const config = {
   },
   docs: {
     autodocs: "tag",
+  },
+  async viteFinal(config) {
+    return mergeConfig(config, {
+      plugins: [tsconfigPaths()],
+    });
   },
 };
 export default config;
