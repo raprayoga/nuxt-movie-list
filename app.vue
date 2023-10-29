@@ -14,9 +14,15 @@
 <script setup>
 import { storeToRefs } from 'pinia';
 import { useCounterStore } from '~/stores/useCounterStore ';
+import http from '~/services/baseService'
 
 const store = useCounterStore()
 
 const { name, doubleCount } = storeToRefs(store)
 const { increment } = store
+
+onMounted( async() => {
+  const {data} = await http.get('https://www.omdbapi.com/?apikey=31ccf49&i=tt3896198')
+  console.log(data)
+})
 </script>
