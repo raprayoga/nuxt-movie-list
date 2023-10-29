@@ -1,3 +1,12 @@
+<template>
+  <button
+    :class="cn(buttonVariants({ variant, size }))"
+    v-bind="props"
+  >
+    <slot></slot>
+  </button>
+</template>
+
 <script setup lang="ts">
 import { cn } from "~/utils"
 import { cva, type VariantProps } from "class-variance-authority"
@@ -43,13 +52,3 @@ withDefaults(
   }
 )
 </script>
-
-<template>
-  <button
-    :class="cn(buttonVariants({ variant, size }))"
-    v-bind="props"
-    data-cy="base-button-element"
-  >
-    <slot></slot>
-  </button>
-</template>
